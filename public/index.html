@@ -941,8 +941,8 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
  <div class="settings-card card account-profile-card"><button id="editProfileButton" class="profile-edit-button" type="button" data-page="edit-profile">Edit profile <span class="profile-edit-icon" data-icon="pencil"></span></button><div class="profile-identity">
   <div class="profile-avatar-caption"><div class="profile-banknote"><div class="profile-banknote-window"><img class="profile-avatar" id="profileAvatar" src="assets/avatars/wrestler.webp" width="220" height="220" alt="Neon Knockout avatar"></div></div><span class="profile-avatar-name" id="profileAvatarName">Neon Knockout</span></div>
  </div></div><div class="settings-card card"><button class="settings-row" id="customizeFromSettings" type="button"><span class="settings-label"><span data-icon="palette"></span><span>Customize</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><div class="settings-row"><span class="settings-label"><span data-icon="sunMoon"></span><span data-i18n="appearance">Light / dark mode</span></span><div class="appearance-toggle"><span aria-hidden="true">☀</span><button class="setting-switch" id="themeToggle" type="button" role="switch" aria-label="Dark mode" aria-checked="false"><span></span></button><span aria-hidden="true">☾</span></div></div><p class="setting-note" id="themeModeHelp" hidden>Noir stays dark. Choose OG to use light mode.</p><div class="settings-row" hidden><span class="settings-label" id="hapticLabel"><span data-icon="touch"></span><span>Haptic feedback</span></span><button class="setting-switch" id="hapticToggle" type="button" role="switch" aria-checked="true" aria-labelledby="hapticLabel"><span></span></button></div><p class="setting-note haptic-support" id="hapticSupport" hidden></p><div class="settings-row"><label class="settings-label" for="currencySelect"><span data-icon="coins"></span><span data-i18n="currency">Currency</span></label><select id="currencySelect" aria-label="Currency"></select></div><p class="setting-note" data-i18n="currencyHelp">Changes the currency and number format for your budget. Existing amounts are not converted using exchange rates.</p><div class="settings-row"><label class="settings-label" for="languageSelect"><span data-icon="languages"></span><span data-i18n="language">Language</span></label><select id="languageSelect" aria-label="Language"></select></div></div><h2 class="settings-section-title" id="profileDetailsTitle">PROFILE DETAILS</h2><section class="settings-card card profile-details-card" aria-labelledby="profileDetailsTitle"><div class="settings-row profile-detail-row"><span class="profile-detail-label">Name</span><span class="profile-detail-value" id="profileDisplayName">Your profile</span></div><div class="settings-row profile-detail-row"><span class="profile-detail-label">Email</span><span class="profile-detail-value" id="accountEmail"></span></div></section><h2 class="settings-section-title" data-i18n="legal">LEGAL & ABOUT</h2><div class="settings-card card"><button class="settings-row" data-legal="privacy"><span class="settings-label"><span data-icon="shield"></span><span data-i18n="privacy">Privacy policy</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" data-legal="terms"><span class="settings-label"><span data-icon="fileText"></span><span data-i18n="terms">Terms of use</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" data-legal="licenses"><span class="settings-label"><span data-icon="badgeCheck"></span><span data-i18n="licenses">Credits & licenses</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" id="installApp"><span class="settings-label"><span data-icon="download"></span><span data-i18n="install">Install app</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button></div><div class="profile-account-actions"><button class="profile-action" id="accountSignOut" type="button">Sign out</button><button class="profile-action danger-action" id="accountDelete" type="button">Delete account</button></div><p class="version-note">Salary Save · 3.4.0</p><div id="settingsFooter"></div></section>
-<section id="page-edit-profile" class="page" aria-label="Edit profile" hidden>
- <div class="page-intro profile-edit-header"><button id="profileEditBack" class="profile-back" type="button" data-page="settings" aria-label="Back to Profile"><span data-icon="chevronLeft"></span></button><h1 id="editProfileTitle" tabindex="-1">Edit profile</h1></div>
+<section id="page-edit-profile" class="modal-backdrop avatar-sheet-backdrop" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle" hidden><div class="modal avatar-sheet"><div class="sheet-handle" aria-hidden="true"></div>
+ <div class="modal-top"><h2 id="editProfileTitle" tabindex="-1">Choose your avatar</h2><button id="profileEditBack" class="close-button" type="button" data-close aria-label="Close avatar picker" data-icon="x"></button></div>
  <form id="profileForm" class="profile-editor" aria-busy="false">
   <div class="settings-card card profile-edit-card">
    <div class="profile-identity"><img class="profile-avatar" id="editProfileAvatar" src="assets/avatars/wrestler.webp" width="200" height="200" alt="Neon Knockout avatar"><span class="profile-avatar-name" id="editProfileAvatarName" aria-live="polite">Neon Knockout</span></div>
@@ -950,7 +950,7 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
   </div>
   <div class="profile-save-actions"><p id="profileSaveError" class="profile-save-error" role="alert" hidden></p><button id="profileSave" class="primary" type="submit">Save</button></div>
  </form>
-</section></main></div>
+</div></section></main></div>
 <nav class="bottom-nav" aria-label="Main navigation"><button class="nav-item active" data-page="home" aria-current="page"><span data-icon="home"></span><span data-i18n="home">Home</span></button><button class="nav-item" data-page="plan"><span data-icon="slidersHorizontal"></span><span data-i18n="plan">Plan</span></button><button class="fab nav-add" id="addEntry" aria-label="Add expense" title="Add expense" data-icon="plus"></button><button class="nav-item" data-page="spends"><span data-icon="chartPie"></span><span data-i18n="spends">Spends</span></button><button class="nav-item" data-page="settings"><span data-icon="userProfile"></span><span>Profile</span></button></nav>
 <div class="modal-backdrop" id="customizeModal" hidden role="dialog" aria-modal="true" aria-labelledby="customizeTitle"><section class="modal customize-modal"><div class="modal-top"><h2 id="customizeTitle">Customize</h2><button class="close-button" type="button" data-close aria-label="Close customization" data-icon="x"></button></div><p class="customize-subtitle">Make your app feel like you.</p><div class="ui-theme-options" role="group" aria-label="App theme"><button type="button" class="ui-theme-option" id="chooseOriginalTheme" aria-pressed="true"><span class="theme-preview theme-preview-original" aria-hidden="true"><i></i><b></b><em></em></span><span class="theme-option-title">OG<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Calm & considered</small></button><button type="button" class="ui-theme-option" id="chooseNoirTheme" aria-pressed="false"><span class="theme-preview theme-preview-noir" aria-hidden="true"><i></i><b></b><em></em><strong>SS</strong></span><span class="theme-option-title">Noir<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Charcoal. Chrome. Clarity.</small></button><button type="button" class="ui-theme-option" id="chooseExpressiveTheme" aria-pressed="false" hidden><span class="theme-preview theme-preview-expressive" aria-hidden="true"><i></i><b></b><em></em></span><span class="theme-option-title">Expressive<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Playful. Bold. Yours.</small></button></div><p class="theme-help" id="noirThemeHelp" hidden>Miniature 3D icons. Sculpted surfaces. A darker perspective.</p><h3 class="customize-section-heading">Balance display</h3><div class="balance-design-options"><button type="button" class="balance-design-option" id="chooseGlass" aria-pressed="true"><span class="mini-glass" aria-hidden="true">8 7 , 5 0 0</span><span>Glass capsule</span></button><button type="button" class="balance-design-option" id="chooseFlip" aria-pressed="false"><span class="mini-flip" aria-hidden="true"><b>87</b><b>500</b></span><span>Flip clock</span></button></div><h3 class="icon-pack-heading" id="iconStyleHeading">Icon style</h3><div id="iconStyleOptions" class="icon-pack-options" role="group" aria-label="Icon style"><button type="button" id="chooseSilverIcons" class="icon-pack-option" aria-pressed="true"><span class="pack-preview" id="previewSilverIcons" aria-hidden="true"></span><span>Silver</span><small>Metal & a single accent</small></button><button type="button" id="chooseStickerIcons" class="icon-pack-option" aria-pressed="false"><span class="pack-preview" id="previewStickerIcons" aria-hidden="true"></span><span>Sticker</span><small>Bold objects & graphic details</small></button></div><div class="settings-row"><span id="balanceSoundLabel">Mechanical sounds</span><button type="button" class="setting-switch" id="balanceSound" role="switch" aria-checked="true" aria-labelledby="balanceSoundLabel"><span></span></button></div><button class="primary full" id="customizeDone" type="button">Save</button></section></div>
 <div class="modal-backdrop" id="entryModal" hidden role="dialog" aria-modal="true" aria-labelledby="entryTitle"><form class="modal" id="entryForm"><div class="modal-top"><h2 id="entryTitle" data-i18n="addEntry">Add an entry</h2><button class="close-button" type="button" data-close aria-label="Close entry form" data-icon="x"></button></div><label for="entryName" data-i18n="entryName">What was it for?</label><input id="entryName" maxlength="70" required placeholder="e.g. Groceries, coffee"><div class="form-two"><div><label for="entryAmount"><span data-i18n="amount">Amount</span> (<span class="currency-symbol-label">₹</span>)</label><input id="entryAmount" type="number" inputmode="decimal" min="0.01" max="1000000000" step="0.001" required placeholder="0.00"></div><div><label for="entryDate" data-i18n="date">Date</label><input id="entryDate" type="date" required></div></div><div class="form-two"><div><label for="entryCategory" data-i18n="allocation">Budget allocation</label><select id="entryCategory"><option value="needs" data-i18n="needs">Needs</option><option value="wants" data-i18n="wants">Wants</option><option value="savings" data-i18n="savings">Savings</option></select></div><div><label for="entryDetailCategory" data-i18n="category">Category</label><select id="entryDetailCategory"></select></div></div><div id="customCategoryField" hidden><label for="customCategory" data-i18n="customCategory">Custom category</label><input id="customCategory" maxlength="40" placeholder="Category name"></div><label for="entryNote" data-i18n="note">Note (optional)</label><textarea id="entryNote" maxlength="160"></textarea><p class="error" id="entryError" role="alert" hidden></p><div class="modal-actions"><button type="button" class="danger-button" id="deleteEntry" hidden data-i18n="delete">Delete</button><div><button type="button" class="secondary" data-close data-i18n="cancel">Cancel</button><button type="submit" class="primary" data-i18n="saveEntry">Save entry</button></div></div></form></div>
@@ -1153,11 +1153,11 @@ function beginProfileEdit(){
 }
 function renderProfileAvatarPicker(){
  const picker=$('profileAvatarPicker');if(!profileDraft)return;
- if(picker.dataset.avatar!==profileDraft.avatar){
+ if(!picker.childElementCount){
   const ids=Object.keys(avatarSpecs);
   picker.innerHTML=ids.map(id=>{
    const [name]=avatarSpecs[id];
-   return '<button class="profile-avatar-option" type="button" data-profile-avatar="'+id+'" aria-label="Choose '+esc(name)+'" aria-pressed="'+(id===profileDraft.avatar)+'"><img src="assets/avatars/'+id+'.webp" width="120" height="120" alt=""><span>'+esc(name)+'</span><i aria-hidden="true">✓</i></button>';
+   return '<button class="profile-avatar-option" type="button" data-profile-avatar="'+id+'" aria-label="Choose '+esc(name)+'" aria-pressed="'+(id===profileDraft.avatar)+'"><img src="assets/avatars/'+id+'.webp" width="120" height="120" alt=""><span>'+esc(name)+'</span></button>';
   }).join('');
   picker.dataset.avatar=profileDraft.avatar;
  }
@@ -1174,10 +1174,10 @@ function renderProfileDraft(){
 function selectProfileAvatar(id){
  if(!profileDraft||profileDraft.saving||!Object.hasOwn(avatarSpecs,id))return;
  const changed=profileDraft.avatar!==id;
- if(changed){profileDraft.avatar=id;renderProfileDraft();haptic('selection')}
+ if(changed){profileDraft.avatar=id;renderProfileDraft();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)$('editProfileAvatar').animate([{opacity:.5,transform:'scale(.97)'},{opacity:1,transform:'scale(1)'}],{duration:220,easing:'ease-out'});haptic('selection')}
 }
 function moveProfileAvatar(direction){
- if(!profileDraft||profileDraft.saving||currentPage!=='edit-profile')return;
+ if(!profileDraft||profileDraft.saving||$('page-edit-profile').hidden)return;
  const ids=Object.keys(avatarSpecs),index=ids.indexOf(profileDraft.avatar);
  selectProfileAvatar(ids[(index+direction+ids.length)%ids.length]);
 }
@@ -1190,7 +1190,7 @@ async function saveProfileEdits(event){
  try{
   if(typeof window.accountSaveProfile!=='function')throw new Error('Sign in before saving your profile.');
   await window.accountSaveProfile({avatar:draft.avatar});
-  if(profileDraft===draft&&currentPage==='edit-profile')navigate('settings');
+  if(profileDraft===draft){closeModals();renderProfileAvatar();}
   haptic('success');
   return true;
  }catch(error){
@@ -1352,10 +1352,21 @@ $('profileAvatarPicker').ontouchend=e=>{
 };
 $('profileAvatarPicker').ontouchcancel=()=>profileSwipe=null;
 $('profileAvatarPicker').onkeydown=e=>{
- if(!profileDraft||profileDraft.saving||!['ArrowLeft','ArrowRight'].includes(e.key))return;
- e.preventDefault();moveProfileAvatar(e.key==='ArrowRight'?1:-1);focusProfileAvatar();
+ if(!profileDraft||profileDraft.saving||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
+ e.preventDefault();moveProfileAvatar(({ArrowRight:1,ArrowLeft:-1,ArrowDown:3,ArrowUp:-3})[e.key]);focusProfileAvatar();
 };
 $('profileForm').onsubmit=saveProfileEdits;
+document.body.append($('page-edit-profile'));
+const closeBeforeAvatarSheet=closeModals;
+let avatarSheetClosing=false;
+closeModals=function(restore=true){const sheet=$('page-edit-profile');if(!sheet.hidden&&!matchMedia('(prefers-reduced-motion: reduce)').matches){if(avatarSheetClosing)return;avatarSheetClosing=true;sheet.querySelector('.avatar-sheet').animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(32px)',opacity:0}],{duration:180,easing:'ease-in'}).finished.then(()=>{avatarSheetClosing=false;closeBeforeAvatarSheet(restore)});return}closeBeforeAvatarSheet(restore)};
+$('editProfileButton').removeAttribute('data-page');
+$('editProfileButton').onclick=()=>{beginProfileEdit();openModal('page-edit-profile')};
+$('profileAvatar').closest('.profile-banknote').setAttribute('role','button');
+$('profileAvatar').closest('.profile-banknote').tabIndex=0;
+$('profileAvatar').closest('.profile-banknote').setAttribute('aria-label','Change avatar');
+$('profileAvatar').closest('.profile-banknote').onclick=()=>$('editProfileButton').click();
+$('profileAvatar').closest('.profile-banknote').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('editProfileButton').click()}};
 $('customizeBalance').onclick=$('customizeFromSettings').onclick=()=>{customizeDraft={theme:uiTheme(),design:balanceDesign(),sound:db.settings.balanceSound!==false};renderThemeOptions();renderIconOptions();renderCustomizeDraft();openModal('customizeModal')};
 function chooseBalanceDesign(design){unlockBalanceAudio();db.settings.balanceDesign=design;save();renderCapsuleBalance(totals(state()).available,true)}
 $('chooseGlass').onclick=()=>{customizeDraft.design='glass';renderCustomizeDraft()};$('chooseFlip').onclick=()=>{customizeDraft.design='flip';renderCustomizeDraft()};
@@ -1725,6 +1736,34 @@ requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(spla
  mask-image:linear-gradient(to bottom,#000 0%,#000 86%,rgba(0,0,0,.92) 91%,rgba(0,0,0,.45) 97%,transparent 100%);
 }
 #customizeFromSettings{display:none!important}
+/* Image-led header: native artwork ratio, no painted extensions or overlaid rings. */
+#page-settings .account-profile-card{background:none!important}
+#page-settings .account-profile-card .profile-identity{padding:0!important}
+#page-settings .profile-avatar-caption{position:relative;gap:0!important}
+#page-settings .profile-banknote{width:100%!important;max-width:none;aspect-ratio:1448/1086;background-image:url('/assets/profile-header-v3.webp')!important;background-size:100% 100%!important;cursor:pointer}
+#page-settings .profile-banknote-window{left:26.8%!important;top:16.5%!important;width:45.7%!important;height:62.5%!important;background:none!important;border:0!important;box-shadow:none!important}
+#page-settings .profile-avatar-name{position:absolute;bottom:6%;left:0;right:0;pointer-events:none;font-size:13px!important;text-shadow:0 1px 3px #0008}
+#page-settings .profile-edit-button{top:10px!important;right:12px;font-size:11px;gap:6px}
+#page-settings .profile-edit-icon{width:32px;height:32px}
+.avatar-sheet-backdrop{z-index:100001!important;align-items:flex-end!important;justify-content:center;padding:0!important;overflow:hidden;background:#0005;backdrop-filter:blur(6px)}
+.avatar-sheet{width:min(100%,600px)!important;max-height:88dvh;overflow:auto;overscroll-behavior:contain;border-radius:28px 28px 0 0!important;padding:10px 20px calc(20px + env(safe-area-inset-bottom));animation:avatar-sheet-enter .38s cubic-bezier(.2,.8,.2,1)}
+.sheet-handle{width:36px;height:4px;border-radius:3px;background:var(--muted);opacity:.35;margin:0 auto 20px}
+.avatar-sheet .modal-top h2{font-size:21px}
+.avatar-sheet .profile-editor{min-height:0;gap:12px}
+.avatar-sheet .profile-edit-card{border:0!important;box-shadow:none!important;background:transparent!important;padding:0!important}
+.avatar-sheet .profile-identity{padding:0 0 12px!important}
+.avatar-sheet #editProfileAvatar{--profile-avatar-size:116px;transition:opacity .2s ease}
+.avatar-sheet .profile-avatar-fieldset legend{display:none}
+.avatar-sheet .profile-save-actions{position:sticky;bottom:0;background:var(--surface);padding:12px 0 0;margin:0}
+.avatar-sheet #profileSave{width:100%;border-radius:16px}
+.avatar-sheet .profile-avatar-option{border:2px solid transparent!important;background:transparent;min-height:118px;transition:background .24s ease,border-color .24s ease,transform .24s cubic-bezier(.2,.8,.2,1)}
+.avatar-sheet .profile-avatar-option[aria-pressed=true]{border-color:#16875e!important;background:#16875e12;color:var(--text);transform:none}
+.avatar-sheet .profile-avatar-option:active{transform:scale(.96)}
+.avatar-sheet .profile-avatar-option img{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.avatar-sheet .profile-avatar-option[aria-pressed=true] img{transform:scale(1.06)}
+.avatar-sheet .profile-avatar-option i{display:none!important}
+@keyframes avatar-sheet-enter{from{transform:translateY(45px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){.avatar-sheet,.avatar-sheet *{animation:none!important;transition:none!important}}
 /* The profile illustration is a full-width section, with a lighter medallion. */
 html[data-page=settings] .profile-header{margin-bottom:16px}
 #page-settings .account-profile-card{margin-inline:calc(-1 * var(--app-gutter));width:calc(100% + 2 * var(--app-gutter));padding:0;border:0;border-radius:0;box-shadow:none;background:#08794d;overflow:hidden;clip-path:none;corner-shape:round}
@@ -1762,4 +1801,4 @@ html[data-ui-theme=original][data-theme=dark][data-page=home]{background-image:l
 html[data-ui-theme=original][data-theme=dark][data-page=home] .app-top .ambient{background-image:linear-gradient(#071b1566,#071b1566),var(--home-texture)}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient{background-color:#071713;background-image:linear-gradient(#020b0978,#020b0978),var(--home-texture);background-size:cover;background-position:center top;background-repeat:no-repeat}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-theme=noir][data-page=home] .app-top .ambient:after{display:none}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v61')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v61','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v62')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v62','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
