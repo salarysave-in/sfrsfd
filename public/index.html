@@ -1827,7 +1827,8 @@ html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-t
 #page-settings .profile-banknote-window .profile-avatar{width:100%!important;height:100%!important;max-width:none;object-fit:contain!important;transform:translate(var(--avatar-x,0%),var(--avatar-y,0%)) scale(var(--avatar-scale,1.2))!important}
 #page-settings .profile-avatar-name{bottom:7%!important}
 html[data-page=settings]{background-color:#063a24!important}
-html[data-page=settings] body{background-color:var(--canvas)!important}
+html[data-page=settings] body{background:linear-gradient(to bottom,#063a24 0, #063a24 calc(env(safe-area-inset-top, 0px) + 72px),var(--canvas) calc(env(safe-area-inset-top, 0px) + 150px)) no-repeat var(--canvas)!important}
+html[data-page=settings] .app{background:var(--canvas)}
 #page-settings .account-profile-card:before{display:block!important;content:'';position:absolute;inset:0 0 auto;height:calc(env(safe-area-inset-top, 0px) + 94px);background:linear-gradient(to bottom,rgba(0,35,20,.8),rgba(0,51,28,.35) 65%,transparent);z-index:1;pointer-events:none}
 #page-settings .profile-avatar-name{font-size:18px!important;line-height:1.25;text-align:center}
 img[src$="/avatars/aqua-mask.webp"]{--avatar-scale:1.1933;--avatar-x:-0.130%;--avatar-y:0.130%}
@@ -1851,4 +1852,4 @@ img[src$="/avatars/zombie.webp"]{--avatar-scale:1.1981;--avatar-x:0.000%;--avata
 .avatar-sheet .profile-edit-card>.profile-identity{display:none!important}
 .avatar-sheet .profile-avatar-picker{margin-top:4px}
 .avatar-sheet .profile-avatar-option img{transform:translate(var(--avatar-x,0%),var(--avatar-y,0%)) scale(var(--avatar-scale,1.2))!important}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v67')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v67','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v68')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v68','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
