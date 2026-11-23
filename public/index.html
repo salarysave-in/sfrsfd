@@ -1718,4 +1718,4 @@ requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(spla
  };
  authFns.onAuthStateChanged(auth,user=>{if(!user){if(pending||saving||blocked){currentUser=null;blocked=true;show('loading','Sign-in ended while changes were unsaved. Keep this page open and contact support.');return;}currentUser=null;revision=0;pending=null;blocked=false;db={months:{},settings:{currency:'INR',language:'en',haptics:true}};window.profileAccount=null;resetProfileEditor();show('login');return;}if(deleting)return;if(deletionPending(user)){currentUser=user;openDeletion(true);return;}openAccount(user)});
 })();
-</script><script src="/motion/loading.js" defer></script></body></html>
+</script><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v56')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v56','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
