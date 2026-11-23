@@ -1826,6 +1826,11 @@ html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-t
 #page-settings .profile-banknote-window{left:49.5%!important;top:53.4%!important;width:43%!important;height:auto!important;aspect-ratio:1!important;transform:translate(-50%,-50%)!important;overflow:hidden}
 #page-settings .profile-banknote-window .profile-avatar{width:100%!important;height:100%!important;max-width:none;object-fit:contain!important;transform:translate(var(--avatar-x,0%),var(--avatar-y,0%)) scale(var(--avatar-scale,1.2))!important}
 #page-settings .profile-avatar-name{bottom:7%!important}
+/* Keep the illustration at its natural scale while trimming the extra space below it. */
+#page-settings .profile-avatar-caption{container-type:inline-size}
+#page-settings .profile-banknote{aspect-ratio:auto!important;height:calc(124.96cqw - 48px)!important;background-size:auto,100% auto!important;background-position:center top!important}
+#page-settings .profile-banknote-window{top:66.73cqw!important}
+#page-settings .profile-avatar-name{top:calc(95.5cqw + 8px)!important;bottom:auto!important}
 html[data-page=settings]{background-color:#063a24!important}
 html[data-page=settings] body{background:linear-gradient(to bottom,#063a24 0, #063a24 calc(env(safe-area-inset-top, 0px) + 72px),var(--canvas) calc(env(safe-area-inset-top, 0px) + 150px)) no-repeat var(--canvas)!important}
 html[data-page=settings] .app{background:var(--canvas)}
@@ -1860,4 +1865,4 @@ img[src$="/avatars/zombie.webp"]{--avatar-scale:1.1981;--avatar-x:0.000%;--avata
 .avatar-sheet .profile-edit-card{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 12px!important}
 .avatar-sheet .profile-save-actions{position:relative;flex:none;bottom:auto;z-index:2;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px))!important;margin:0!important;background:var(--surface)!important;border-top:1px solid var(--line)}
 .avatar-sheet #profileSave{display:block;margin:0;width:100%}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v69')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v69','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v70')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v70','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
