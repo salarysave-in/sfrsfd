@@ -675,73 +675,73 @@ button[aria-busy=true]{display:inline-flex;align-items:center;justify-content:ce
 .theme-preview-noir strong{position:absolute;right:7px;top:5px;font:600 8px/1 Manrope,sans-serif;letter-spacing:1px;color:#9c9fa5}
 html[data-ui-theme=noir]{color-scheme:dark;--canvas:#121315;--surface:#1c1e21;--surface-soft:#25272b;--line:#34363c;--divider:#2b2d32;--text:#eeedf0;--muted:#a2a4ad;--brand:#e4e3e7;--accent:#c5c7cb;--green-100:#2b2e33;--danger:#e7a695;--noir-chrome:#d0d2d5;--noir-gold:#cbb78f;--r-sm:12px;--r-md:20px;--r-lg:28px}
 html[data-ui-theme=noir] body{background:var(--canvas);color:var(--text)}
-html[data-ui-theme=noir] :is(h1,h2,h3,.brand){font-family:var(--font-heading);font-weight:650;letter-spacing:-.65px}
-html[data-ui-theme=noir] .brand{font-size:23px;gap:10px;letter-spacing:-.9px}
+html[data-ui-theme=noir] :is(h1,h2,h3,.brand){}
+html[data-ui-theme=noir] .brand{gap:10px;}
 html[data-ui-theme=noir] .brand img{filter:brightness(0) invert(1);opacity:.92}
 html[data-ui-theme=noir][data-page=home] .app-top{background:#121315}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient{background:radial-gradient(ellipse at 50% 2%,#34373c77,transparent 68%),linear-gradient(180deg,#17191c,#121315);background-size:auto}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-theme=noir][data-page=home] .app-top .ambient:after{display:none;background:none}
 html[data-ui-theme=noir][data-page=home] .app-top .brand{color:#f1eff2;text-shadow:none}
 html[data-ui-theme=noir][data-page=home] .app-top .brand img{filter:brightness(0) invert(1)}
-html[data-ui-theme=noir] .month-pill,html[data-ui-theme=noir][data-page=home] .month-pill{background:linear-gradient(150deg,#272a2f,#1a1c20);color:#d9dade;border:1px solid #42454b;border-radius:99px;box-shadow:4px 4px 10px #0006,-2px -2px 8px #ffffff04,inset 0 1px #ffffff09;corner-shape:round;font-weight:500;font-size:12px;min-height:42px;gap:13px}
+html[data-ui-theme=noir] .month-pill,html[data-ui-theme=noir][data-page=home] .month-pill{background:linear-gradient(150deg,#272a2f,#1a1c20);color:#d9dade;border:1px solid #42454b;border-radius:99px;box-shadow:4px 4px 10px #0006,-2px -2px 8px #ffffff04,inset 0 1px #ffffff09;corner-shape:round;min-height:42px;gap:13px}
 html[data-ui-theme=noir] .month-pill svg{color:#9b9da5;width:15px;height:15px}
 html[data-ui-theme=noir] .hero .balance-label{color:#b4b5bc}
-html[data-ui-theme=noir] .balance-actions #balanceToggle{font-size:12px;font-weight:500;letter-spacing:.1px}
+html[data-ui-theme=noir] .balance-actions #balanceToggle{}
 html[data-ui-theme=noir] .hero{padding-bottom:28px}
 html[data-ui-theme=noir] .hero-stats{gap:16px}
 html[data-ui-theme=noir] :is(.card,.allocation-card,.hero-stat,.legend-row,.budget-checkin){border:1px solid #ffffff0c;background:linear-gradient(145deg,#23252a,#191b1f 80%);border-radius:20px;corner-shape:round;box-shadow:6px 7px 17px #0005,-3px -3px 10px #ffffff03,inset 0 1px #ffffff07;clip-path:none}
 html[data-ui-theme=noir] .hero-stat{background:linear-gradient(135deg,#26292e,#1c1e22);border-radius:16px;min-height:78px;padding:14px 12px;box-shadow:5px 5px 12px #0005,-2px -2px 7px #ffffff04,inset 0 1px #ffffff08}
-html[data-ui-theme=noir] .hero-stat span{color:#a8aab1;font-size:10px;font-weight:500}
-html[data-ui-theme=noir] .hero-stat b{color:#f2f0f3;font-size:20px;letter-spacing:-.5px;font-weight:650}
+html[data-ui-theme=noir] .hero-stat span{color:#a8aab1;}
+html[data-ui-theme=noir] .hero-stat b{color:#f2f0f3;}
 html[data-ui-theme=noir] .hero-stat:last-child b{color:#e2d4b7}
 html[data-ui-theme=noir][data-page=home] .home-content{background:var(--canvas);border-radius:28px 28px 0 0;border-top:1px solid #ffffff10;box-shadow:0 -10px 28px #0002;padding-top:27px}
 html[data-ui-theme=noir][data-page=home] .home-content:before{height:3px;width:26px;background:#5c6068;top:10px}
 html[data-ui-theme=noir] .home-content>.section-head:first-child{margin-bottom:22px}
-html[data-ui-theme=noir] .section-head h2{font-size:clamp(20px,5.6vw,27px);line-height:1.25;font-weight:650}
-html[data-ui-theme=noir] .section-head .text-button{font-size:11px;letter-spacing:.15px;color:#babcc4;font-weight:500}
+html[data-ui-theme=noir] .section-head h2{}
+html[data-ui-theme=noir] .section-head .text-button{color:#babcc4;}
 html[data-ui-theme=noir] .allocation-grid{gap:18px}
 html[data-ui-theme=noir] .allocation-card{padding:20px 17px}
 html[data-ui-theme=noir] .allocation-card header{height:38px}
-html[data-ui-theme=noir] .allocation-card h3{font-size:18px;line-height:1.3;margin-top:17px;margin-bottom:10px;font-weight:600}
-html[data-ui-theme=noir] .percent-chip{background:linear-gradient(135deg,#2b2e33,#1c1e22);border:1px solid #45484f;border-radius:10px;min-height:32px;padding:5px 8px;color:#c4c6cd;font-size:10px;font-weight:500;box-shadow:2px 2px 5px #0004,inset 0 1px #ffffff07}
-html[data-ui-theme=noir] .budget-values strong{font-size:29px;letter-spacing:-1px;font-weight:650}
-html[data-ui-theme=noir] .budget-values small{color:#9497a1;font-size:10px}
+html[data-ui-theme=noir] .allocation-card h3{margin-top:17px;margin-bottom:10px;}
+html[data-ui-theme=noir] .percent-chip{background:linear-gradient(135deg,#2b2e33,#1c1e22);border:1px solid #45484f;border-radius:10px;min-height:32px;padding:5px 8px;color:#c4c6cd;box-shadow:2px 2px 5px #0004,inset 0 1px #ffffff07}
+html[data-ui-theme=noir] .budget-values strong{}
+html[data-ui-theme=noir] .budget-values small{color:#9497a1;}
 html[data-ui-theme=noir] .progress{height:4px;background:#373a40;border-radius:4px;margin-top:20px;margin-bottom:10px;box-shadow:inset 0 1px 2px #0003}
 html[data-ui-theme=noir] .progress>div{background:linear-gradient(90deg,#818b88,#c3cdc8);border-radius:4px}
 html[data-ui-theme=noir] .allocation-card.savings .progress>div{background:linear-gradient(90deg,#958469,#dfd0ac)}
-html[data-ui-theme=noir] .allocation-card .remaining{color:#a0a3ad;font-size:12px;line-height:18px;font-weight:500}
+html[data-ui-theme=noir] .allocation-card .remaining{color:#a0a3ad;}
 html[data-ui-theme=noir] .allocation-card.savings{background:radial-gradient(ellipse at 100% 0,#67594426,transparent 65%),linear-gradient(135deg,#252629,#1b1d20)}
 html[data-ui-theme=noir] .budget-checkin{background:linear-gradient(140deg,#24272c,#1a1c20);border-color:#ffffff0d}
-html[data-ui-theme=noir] .budget-checkin h3{font-size:16px;font-weight:600}
+html[data-ui-theme=noir] .budget-checkin h3{}
 html[data-ui-theme=noir] .budget-checkin p{color:var(--muted)}
 html[data-ui-theme=noir] .page-intro{margin-top:30px;margin-bottom:25px}
-html[data-ui-theme=noir] .page-intro h1{font-size:clamp(24px,6.7vw,36px);font-weight:650;line-height:1.2;white-space:normal;max-width:650px;letter-spacing:-1px}
-html[data-ui-theme=noir] .page-intro h1.plan-title{font-size:clamp(23px,6vw,32px);line-height:1.25}
-html[data-ui-theme=noir] :is(.primary,.history-empty .history-add){background:linear-gradient(135deg,#eeedf0,#c9cbd0);color:#202227;border:1px solid #ffffff88;border-radius:14px;font-weight:650;box-shadow:4px 4px 12px #0005,inset 0 1px #fff8}
-html[data-ui-theme=noir] .secondary{border:1px solid #464951;background:linear-gradient(135deg,#30333a,#21242a);color:#d1d2d9;border-radius:14px;box-shadow:3px 3px 8px #0004,inset 0 1px #ffffff08;font-weight:500}
+html[data-ui-theme=noir] .page-intro h1{white-space:normal;max-width:650px;}
+html[data-ui-theme=noir] .page-intro h1.plan-title{}
+html[data-ui-theme=noir] :is(.primary,.history-empty .history-add){background:linear-gradient(135deg,#eeedf0,#c9cbd0);color:#202227;border:1px solid #ffffff88;border-radius:14px;box-shadow:4px 4px 12px #0005,inset 0 1px #fff8}
+html[data-ui-theme=noir] .secondary{border:1px solid #464951;background:linear-gradient(135deg,#30333a,#21242a);color:#d1d2d9;border-radius:14px;box-shadow:3px 3px 8px #0004,inset 0 1px #ffffff08;}
 html[data-ui-theme=noir] :is(.primary,.secondary):active{box-shadow:inset 2px 2px 6px #0004;transform:none}
 html[data-ui-theme=noir] .bottom-nav{background:linear-gradient(180deg,#24272c,#1b1d21);border:1px solid #ffffff12;border-bottom:0;border-radius:24px 24px 0 0;corner-shape:round;box-shadow:0 -5px 20px #0004,inset 0 1px #ffffff06}
-html[data-ui-theme=noir] .bottom-nav .nav-item{color:#8f939e;font-size:10px}
-html[data-ui-theme=noir] .bottom-nav .nav-item.active{color:#efedf0;font-weight:500}
+html[data-ui-theme=noir] .bottom-nav .nav-item{color:#8f939e;}
+html[data-ui-theme=noir] .bottom-nav .nav-item.active{color:#efedf0;}
 html[data-ui-theme=noir] .bottom-nav .nav-add{background:linear-gradient(135deg,#f0eff0,#a6abb4);border:1px solid #f2f3f5;color:#252930;box-shadow:4px 5px 11px #0007,-2px -2px 7px #ffffff08,inset 0 1px 1px #fff9;width:50px;height:50px}
 html[data-ui-theme=noir] .bottom-nav .nav-add:before{display:none}
 html[data-ui-theme=noir] .bottom-nav .nav-add:active{background:linear-gradient(145deg,#bcc0c7,#dce0e5);box-shadow:inset 2px 2px 6px #0004;scale:1}
 html[data-ui-theme=noir] .nav-item.active .nav-single-icon .nav-detail{stroke:#24272c}
 html[data-ui-theme=noir] .modal{background:linear-gradient(145deg,#282b30,#1b1e23);border:1px solid #ffffff16;border-radius:26px;color:var(--text);box-shadow:0 20px 70px #0008,inset 0 1px #ffffff09}
 html[data-ui-theme=noir] .modal-backdrop{background:#08090bc4;backdrop-filter:blur(7px)}
-html[data-ui-theme=noir] .modal-top h2{font-family:var(--font-heading);font-weight:650;font-size:27px;letter-spacing:-.8px}
-html[data-ui-theme=noir] .modal label{color:#c5c7ce;font-weight:500}
+html[data-ui-theme=noir] .modal-top h2{}
+html[data-ui-theme=noir] .modal label{color:#c5c7ce;}
 html[data-ui-theme=noir] :is(.modal input,.modal select,.modal textarea,.settings-row select,.percent-box,.select-pill,.search-input){background:#17191d;border:1px solid #3c3f47;color:var(--text);border-radius:12px;box-shadow:inset 2px 2px 5px #0004,inset -1px -1px 3px #ffffff03}
 html[data-ui-theme=noir] input::placeholder,html[data-ui-theme=noir] textarea::placeholder{color:#878b96}
 html[data-ui-theme=noir] .income-field input,html[data-ui-theme=noir] .percent-box input{background:transparent;border:0;box-shadow:none;color:var(--text)}
 html[data-ui-theme=noir] .currency-symbol{color:#bdbfc6}
-html[data-ui-theme=noir] .income-card label{color:#a0a3ad;font-size:10px;font-weight:600;letter-spacing:1.5px}
-html[data-ui-theme=noir] .income-field input{font-size:36px;font-weight:650;letter-spacing:-1.2px}
+html[data-ui-theme=noir] .income-card label{color:#a0a3ad;}
+html[data-ui-theme=noir] .income-field input{}
 html[data-ui-theme=noir] .income-card{padding:22px}
 html[data-ui-theme=noir] .saving-step{background:linear-gradient(110deg,#31302b55,#25272b00);border-color:var(--divider)}
-html[data-ui-theme=noir] .step-heading{color:#cbccd1;font-weight:500}
-html[data-ui-theme=noir] .step-number{background:linear-gradient(145deg,#4a4d54,#272a30);box-shadow:2px 2px 5px #0004,inset 0 1px #ffffff0a;border:1px solid #4c505a;color:#d6d7dc;font-weight:500}
-html[data-ui-theme=noir] .editor-label,html[data-ui-theme=noir] .editor-head label{font-weight:500}
+html[data-ui-theme=noir] .step-heading{color:#cbccd1;}
+html[data-ui-theme=noir] .step-number{background:linear-gradient(145deg,#4a4d54,#272a30);box-shadow:2px 2px 5px #0004,inset 0 1px #ffffff0a;border:1px solid #4c505a;color:#d6d7dc;}
+html[data-ui-theme=noir] .editor-label,html[data-ui-theme=noir] .editor-head label{}
 html[data-ui-theme=noir] .plan-amount,html[data-ui-theme=noir] .linked-caption #splitEquation{color:#a5a8b1}
 html[data-ui-theme=noir] .rest-pill{background:#2a2d33;color:#bfc2cb;border:1px solid #454851;border-radius:99px}
 html[data-ui-theme=noir] .tooltip-box{background:#2a2d33;color:#c7c9d0;border:1px solid #444850}
@@ -751,24 +751,24 @@ html[data-ui-theme=noir] #slider-remainder{background:#818b86}
 html[data-ui-theme=noir] .range::-webkit-slider-thumb{background:linear-gradient(150deg,#d9dde0,#6b7479);border:2px solid #9ba1a5;border-radius:10px;box-shadow:2px 3px 6px #0008,inset 0 1px #eef4f555}
 html[data-ui-theme=noir] .range::-moz-range-thumb{background:linear-gradient(150deg,#d9dde0,#6b7479);border:2px solid #9ba1a5;border-radius:10px;box-shadow:2px 3px 6px #0008}
 html[data-ui-theme=noir] .segmented{background:#1a1c21;border:1px solid #353840;box-shadow:inset 2px 2px 5px #0004}
-html[data-ui-theme=noir] .segmented button{font-weight:500}
+html[data-ui-theme=noir] .segmented button{}
 html[data-ui-theme=noir] .segmented button.active{background:linear-gradient(145deg,#3a3e46,#2c3037);color:#eeeef2;box-shadow:2px 2px 6px #0005}
-html[data-ui-theme=noir] .period-chip{color:#8e929c;border-radius:12px;font-weight:500}
+html[data-ui-theme=noir] .period-chip{color:#8e929c;border-radius:12px;}
 html[data-ui-theme=noir] .period-chip.active{background:linear-gradient(145deg,#30343b,#252830);border:1px solid #484c56;color:#e1e2e8;box-shadow:3px 3px 7px #0004}
 html[data-ui-theme=noir] .legend-row.active{background:linear-gradient(145deg,#373b43,#272b32);border-color:#8a909b;box-shadow:inset 0 0 0 1px #ffffff0c}
 html[data-ui-theme=noir] .chart-segment[aria-pressed=true]{filter:drop-shadow(0 0 3px #ffffff22)}
 html[data-ui-theme=noir] .selected-category{background:#30343c;color:#e1e1e6;border:1px solid #4a4f58;border-radius:12px}
 html[data-ui-theme=noir] .transaction-tools select{background:#1a1d22;color:#c2c5ce;border:1px solid #414650;border-radius:10px;padding:5px;min-height:40px}
 html[data-ui-theme=noir] :is(.legend-row:active,.allocation-card[role=button]:active,.entry-row:active){background:linear-gradient(145deg,#30343b,#25282e);border-color:#676e7a}
-html[data-ui-theme=noir] .entry-info b{font-weight:550;color:#e4e3e8}
-html[data-ui-theme=noir] .entry-price{font-weight:600;color:#eeedf0}
+html[data-ui-theme=noir] .entry-info b{color:#e4e3e8}
+html[data-ui-theme=noir] .entry-price{color:#eeedf0}
 html[data-ui-theme=noir] .entry-row>.chevron{color:#7a818e}
 html[data-ui-theme=noir] .icon-tile .icon-art[data-pack=sticker],html[data-ui-theme=noir] .note-bundle .icon-art[data-pack=sticker]{filter:saturate(.18) brightness(.92) contrast(.96)}
 html[data-ui-theme=noir] .settings-card{padding:0 20px}
 html[data-ui-theme=noir] .settings-row{border-color:var(--divider)}
-html[data-ui-theme=noir] .settings-label{font-weight:500}
+html[data-ui-theme=noir] .settings-label{}
 html[data-ui-theme=noir] .settings-label svg{color:#aeb2bc}
-html[data-ui-theme=noir] .settings-section-title{color:#9297a2;font-weight:600;letter-spacing:2px;font-size:10px}
+html[data-ui-theme=noir] .settings-section-title{color:#9297a2;}
 html[data-ui-theme=noir] .setting-note{color:#9da2ae}
 html[data-ui-theme=noir] .setting-switch{background:#17191e;border:1px solid #434751;box-shadow:inset 2px 2px 4px #0007}
 html[data-ui-theme=noir] .setting-switch span{background:linear-gradient(135deg,#bfc4ca,#747d87);box-shadow:2px 2px 4px #0006}
@@ -870,7 +870,7 @@ html[data-page=plan] .app{padding-bottom:calc(var(--bottom-nav-height) + 16px)}
  #page-plan .note-bundle{width:56px}
  #page-plan .note-bundle .icon-art{width:82px;height:82px}
 }
-html[data-ui-theme=noir] #page-plan .income-field{font-size:36px;font-weight:650}
+html[data-ui-theme=noir] #page-plan .income-field{}
 html[data-ui-theme=noir] #page-plan .note-bundle{width:52px;height:52px}
 html[data-ui-theme=noir] #page-plan .note-bundle .simple-icon{width:30px;height:30px}
 
@@ -939,7 +939,7 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
 <section id="page-settings" class="page" aria-label="Profile" hidden>
  <div class="page-intro profile-header"><h1>Profile</h1></div>
  <div class="settings-card card account-profile-card"><button id="editProfileButton" class="profile-edit-button" type="button" data-page="edit-profile">Edit profile <span class="profile-edit-icon" data-icon="pencil"></span></button><div class="profile-identity">
-  <div class="profile-avatar-caption"><img class="profile-avatar" id="profileAvatar" src="assets/avatars/wrestler.webp" width="220" height="220" alt="Neon Knockout avatar"><span class="profile-avatar-name" id="profileAvatarName">Neon Knockout</span></div>
+  <div class="profile-avatar-caption"><div class="profile-banknote"><div class="profile-banknote-window"><img class="profile-avatar" id="profileAvatar" src="assets/avatars/wrestler.webp" width="220" height="220" alt="Neon Knockout avatar"></div></div><span class="profile-avatar-name" id="profileAvatarName">Neon Knockout</span></div>
  </div></div><div class="settings-card card"><button class="settings-row" id="customizeFromSettings" type="button"><span class="settings-label"><span data-icon="palette"></span><span>Customize</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><div class="settings-row"><span class="settings-label"><span data-icon="sunMoon"></span><span data-i18n="appearance">Light / dark mode</span></span><div class="appearance-toggle"><span aria-hidden="true">☀</span><button class="setting-switch" id="themeToggle" type="button" role="switch" aria-label="Dark mode" aria-checked="false"><span></span></button><span aria-hidden="true">☾</span></div></div><p class="setting-note" id="themeModeHelp" hidden>Noir stays dark. Choose OG to use light mode.</p><div class="settings-row" hidden><span class="settings-label" id="hapticLabel"><span data-icon="touch"></span><span>Haptic feedback</span></span><button class="setting-switch" id="hapticToggle" type="button" role="switch" aria-checked="true" aria-labelledby="hapticLabel"><span></span></button></div><p class="setting-note haptic-support" id="hapticSupport" hidden></p><div class="settings-row"><label class="settings-label" for="currencySelect"><span data-icon="coins"></span><span data-i18n="currency">Currency</span></label><select id="currencySelect" aria-label="Currency"></select></div><p class="setting-note" data-i18n="currencyHelp">Changes the currency and number format for your budget. Existing amounts are not converted using exchange rates.</p><div class="settings-row"><label class="settings-label" for="languageSelect"><span data-icon="languages"></span><span data-i18n="language">Language</span></label><select id="languageSelect" aria-label="Language"></select></div></div><h2 class="settings-section-title" id="profileDetailsTitle">PROFILE DETAILS</h2><section class="settings-card card profile-details-card" aria-labelledby="profileDetailsTitle"><div class="settings-row profile-detail-row"><span class="profile-detail-label">Name</span><span class="profile-detail-value" id="profileDisplayName">Your profile</span></div><div class="settings-row profile-detail-row"><span class="profile-detail-label">Email</span><span class="profile-detail-value" id="accountEmail"></span></div></section><h2 class="settings-section-title" data-i18n="legal">LEGAL & ABOUT</h2><div class="settings-card card"><button class="settings-row" data-legal="privacy"><span class="settings-label"><span data-icon="shield"></span><span data-i18n="privacy">Privacy policy</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" data-legal="terms"><span class="settings-label"><span data-icon="fileText"></span><span data-i18n="terms">Terms of use</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" data-legal="licenses"><span class="settings-label"><span data-icon="badgeCheck"></span><span data-i18n="licenses">Credits & licenses</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button><button class="settings-row" id="installApp"><span class="settings-label"><span data-icon="download"></span><span data-i18n="install">Install app</span></span><span class="settings-button-arrow" data-icon="chevronRight"></span></button></div><div class="profile-account-actions"><button class="profile-action" id="accountSignOut" type="button">Sign out</button><button class="profile-action danger-action" id="accountDelete" type="button">Delete account</button></div><p class="version-note">Salary Save · 3.4.0</p><div id="settingsFooter"></div></section>
 <section id="page-edit-profile" class="page" aria-label="Edit profile" hidden>
  <div class="page-intro profile-edit-header"><button id="profileEditBack" class="profile-back" type="button" data-page="settings" aria-label="Back to Profile"><span data-icon="chevronLeft"></span></button><h1 id="editProfileTitle" tabindex="-1">Edit profile</h1></div>
@@ -1723,6 +1723,16 @@ requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(spla
  mask-image:linear-gradient(to bottom,#000 0%,#000 86%,rgba(0,0,0,.92) 91%,rgba(0,0,0,.45) 97%,transparent 100%);
 }
 #customizeFromSettings{display:none!important}
+[data-i18n="currencyHelp"]{display:none!important}
+.account-profile-card .profile-identity{padding:64px 0 16px}
+.account-profile-card .profile-avatar-caption{width:100%;gap:16px}
+.profile-banknote{position:relative;width:min(100%,420px);aspect-ratio:1;background:url('/assets/profile-engraved-frame.jpg') center/100% 100% no-repeat;isolation:isolate}
+.profile-banknote-window{position:absolute;left:26.5%;top:25.5%;width:47%;height:48.5%;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.profile-banknote-window .profile-avatar{width:125%;height:125%;max-width:none;margin:0;object-fit:contain;filter:none;transform:translateY(8%)}
+#budget-loader{position:fixed!important;inset:0!important;width:100%!important;height:100vh!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;background:#f6f7f2!important;overflow:hidden;isolation:isolate;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+html[data-theme=dark] #budget-loader{background:#000!important}
+#budget-loader .motion{background:transparent!important;border:0!important;box-shadow:none!important}
+html[data-ui-theme=noir][data-page=home],html[data-ui-theme=noir][data-page=home] .app-top,html[data-ui-theme=noir][data-page=home] .app-top .ambient{background:#000!important}
 :root{--home-texture:url('/assets/home-woven-texture.webp')}
 html[data-ui-theme=original][data-page=home]{background-color:#08745a;background-image:linear-gradient(#063f3124,#063f3124),var(--home-texture);background-size:cover;background-position:center top;background-repeat:no-repeat;background-attachment:fixed}
 html[data-ui-theme=original][data-page=home] .app-top .ambient{background:#08745a var(--home-texture) center top/cover no-repeat}
@@ -1731,4 +1741,4 @@ html[data-ui-theme=original][data-theme=dark][data-page=home]{background-image:l
 html[data-ui-theme=original][data-theme=dark][data-page=home] .app-top .ambient{background-image:linear-gradient(#071b1566,#071b1566),var(--home-texture)}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient{background-color:#071713;background-image:linear-gradient(#020b0978,#020b0978),var(--home-texture);background-size:cover;background-position:center top;background-repeat:no-repeat}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-theme=noir][data-page=home] .app-top .ambient:after{display:none}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v59')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v59','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v60')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v60','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
