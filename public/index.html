@@ -1154,10 +1154,10 @@ function beginProfileEdit(){
 function renderProfileAvatarPicker(){
  const picker=$('profileAvatarPicker');if(!profileDraft)return;
  if(picker.dataset.avatar!==profileDraft.avatar){
-  const ids=Object.keys(avatarSpecs),index=ids.indexOf(profileDraft.avatar);
-  picker.innerHTML=[-1,0,1].map(offset=>{
-   const id=ids[(index+offset+ids.length)%ids.length],[name]=avatarSpecs[id];
-   return '<button class="profile-avatar-option" type="button" data-profile-avatar="'+id+'" aria-label="Choose '+esc(name)+'" aria-pressed="'+(offset===0)+'"><img src="assets/avatars/'+id+'.webp" width="120" height="120" alt=""></button>';
+  const ids=Object.keys(avatarSpecs);
+  picker.innerHTML=ids.map(id=>{
+   const [name]=avatarSpecs[id];
+   return '<button class="profile-avatar-option" type="button" data-profile-avatar="'+id+'" aria-label="Choose '+esc(name)+'" aria-pressed="'+(id===profileDraft.avatar)+'"><img src="assets/avatars/'+id+'.webp" width="120" height="120" alt=""><span>'+esc(name)+'</span><i aria-hidden="true">✓</i></button>';
   }).join('');
   picker.dataset.avatar=profileDraft.avatar;
  }
@@ -1337,6 +1337,7 @@ let customizeDraft=null;
 function renderCustomizeDraft(){if(!customizeDraft)return;for(const [id,val] of [['chooseOriginalTheme','original'],['chooseNoirTheme','noir']])$(id).setAttribute('aria-pressed',customizeDraft.theme===val);for(const [id,val] of [['chooseGlass','glass'],['chooseFlip','flip']])$(id).setAttribute('aria-pressed',customizeDraft.design===val);$('balanceSound').setAttribute('aria-checked',customizeDraft.sound)}
 $('profileAvatarPicker').onclick=e=>{const button=e.target.closest('[data-profile-avatar]');if(button){selectProfileAvatar(button.dataset.profileAvatar);focusProfileAvatar()}};
 $('profileAvatarPicker').onwheel=e=>{
+ return; // The full gallery uses normal page scrolling.
  if(!profileDraft||profileDraft.saving||currentPage!=='edit-profile')return;
  const delta=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;if(Math.abs(delta)<4)return;
  e.preventDefault();const now=Date.now();if(now-profileWheelTime<180)return;profileWheelTime=now;
@@ -1344,6 +1345,7 @@ $('profileAvatarPicker').onwheel=e=>{
 };
 $('profileAvatarPicker').ontouchstart=e=>{profileSwipe=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null};
 $('profileAvatarPicker').ontouchend=e=>{
+ return; // Tap to select; swiping scrolls the gallery without changing the avatar.
  const start=profileSwipe;profileSwipe=null;if(!start||e.touches.length||!e.changedTouches.length)return;
  const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;
  if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.25)moveProfileAvatar(dx<0?1:-1);
@@ -1723,6 +1725,25 @@ requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(spla
  mask-image:linear-gradient(to bottom,#000 0%,#000 86%,rgba(0,0,0,.92) 91%,rgba(0,0,0,.45) 97%,transparent 100%);
 }
 #customizeFromSettings{display:none!important}
+/* The profile illustration is a full-width section, with a lighter medallion. */
+html[data-page=settings] .profile-header{margin-bottom:16px}
+#page-settings .account-profile-card{margin-inline:calc(-1 * var(--app-gutter));width:calc(100% + 2 * var(--app-gutter));padding:0;border:0;border-radius:0;box-shadow:none;background:#08794d;overflow:hidden;clip-path:none;corner-shape:round}
+#page-settings .account-profile-card .profile-identity{padding:64px 0 28px}
+#page-settings .profile-avatar-caption{width:100%;gap:16px}
+#page-settings .profile-banknote{width:min(100%,560px);background-size:112% 112%;background-position:center}
+#page-settings .profile-banknote-window{left:16%;top:16%;width:68%;height:68%;background:#f5edcf;border:2px solid #062e20;box-shadow:0 0 0 3px #289b65}
+#page-settings .profile-banknote-window .profile-avatar{width:100%;height:100%;transform:none;object-fit:contain;object-position:center}
+#page-settings .profile-avatar-name{color:#f7f0d6;font-size:16px}
+#page-settings .profile-edit-button{z-index:2;inset-inline-end:20px;color:#fff6dc}
+#page-settings .profile-edit-icon{background:#f5edcf;color:#07583e}
+.profile-avatar-picker{grid-template-columns:repeat(3,minmax(0,1fr));max-width:540px;gap:12px;overflow:visible;padding:4px}
+.profile-avatar-option{position:relative;display:flex;flex-direction:column;justify-content:center;gap:4px;border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:8px 4px;opacity:1;transform:none;aspect-ratio:auto;min-height:134px}
+.profile-avatar-option img{width:86px;height:86px;max-width:100%;object-fit:contain}
+.profile-avatar-option span{font-size:11px;line-height:1.3;font-weight:600;text-align:center}
+.profile-avatar-option i{display:none;position:absolute;right:6px;top:6px;width:20px;height:20px;border-radius:50%;background:#07583e;color:#fff;font:normal 13px/20px system-ui}
+.profile-avatar-option[aria-pressed=true]{border:2px solid #16875e;background:#e6f1e7;transform:none;color:#173d29}
+.profile-avatar-option[aria-pressed=true] i{display:block}
+html[data-theme=dark] .profile-avatar-option[aria-pressed=true]{background:#183f30;color:#f5edcf}
 [data-i18n="currencyHelp"]{display:none!important}
 .account-profile-card .profile-identity{padding:64px 0 16px}
 .account-profile-card .profile-avatar-caption{width:100%;gap:16px}
@@ -1741,4 +1762,4 @@ html[data-ui-theme=original][data-theme=dark][data-page=home]{background-image:l
 html[data-ui-theme=original][data-theme=dark][data-page=home] .app-top .ambient{background-image:linear-gradient(#071b1566,#071b1566),var(--home-texture)}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient{background-color:#071713;background-image:linear-gradient(#020b0978,#020b0978),var(--home-texture);background-size:cover;background-position:center top;background-repeat:no-repeat}
 html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-theme=noir][data-page=home] .app-top .ambient:after{display:none}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v60')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v60','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v61')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v61','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
