@@ -1334,7 +1334,7 @@ $('balanceToggle').onclick=$('balanceDisplay').onclick=toggleBalance;
 $('balanceDisplay').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleBalance()}};
 let customizeDraft=null;
 function renderCustomizeDraft(){if(!customizeDraft)return;for(const [id,val] of [['chooseOriginalTheme','original'],['chooseNoirTheme','noir']])$(id).setAttribute('aria-pressed',customizeDraft.theme===val);for(const [id,val] of [['chooseGlass','glass'],['chooseFlip','flip']])$(id).setAttribute('aria-pressed',customizeDraft.design===val);$('balanceSound').setAttribute('aria-checked',customizeDraft.sound)}
-$('profileAvatarPicker').onclick=e=>{const button=e.target.closest('[data-profile-avatar]');if(button){selectProfileAvatar(button.dataset.profileAvatar);focusProfileAvatar()}};
+$('profileAvatarPicker').onclick=e=>{const button=e.target.closest('[data-profile-avatar]');if(button)selectProfileAvatar(button.dataset.profileAvatar)};
 $('profileAvatarPicker').onwheel=e=>{
  return; // The full gallery uses normal page scrolling.
  if(!profileDraft||profileDraft.saving||currentPage!=='edit-profile')return;
@@ -1819,4 +1819,32 @@ html[data-ui-theme=noir][data-page=home] .app-top .ambient:before,html[data-ui-t
 #page-settings .profile-edit-button{top:calc(env(safe-area-inset-top, 0px) + 18px)!important;right:var(--app-gutter)!important;left:auto;z-index:4;width:44px;height:44px;min-height:44px;justify-content:center;padding:0}
 #page-settings .profile-edit-icon{width:44px!important;height:44px!important}
 #page-settings .profile-header{z-index:3!important}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v64')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v64','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+/* A single portrait artwork fills the entire header without stretching or seams. */
+#page-settings .account-profile-card{padding-top:0!important;background:none!important}
+#page-settings .account-profile-card:before{display:none!important}
+#page-settings .profile-banknote{width:100%!important;aspect-ratio:1122/1402!important;height:auto!important;background:linear-gradient(#08745a26,#08745a26),url('/assets/profile-header-v4.webp') center/100% 100% no-repeat!important}
+#page-settings .profile-banknote-window{left:49.8%!important;top:56%!important;width:54%!important;height:auto!important;aspect-ratio:1!important;transform:translate(-50%,-50%)!important;overflow:hidden}
+#page-settings .profile-banknote-window .profile-avatar{width:100%!important;height:100%!important;max-width:none;object-fit:contain!important;transform:translate(var(--avatar-x,0%),var(--avatar-y,0%)) scale(var(--avatar-scale,1.2))!important}
+#page-settings .profile-avatar-name{bottom:7%!important}
+img[src$="/avatars/aqua-mask.webp"]{--avatar-scale:1.1933;--avatar-x:-0.130%;--avatar-y:0.130%}
+img[src$="/avatars/ember-drop.webp"]{--avatar-scale:1.1933;--avatar-x:0.260%;--avatar-y:0.130%}
+img[src$="/avatars/four-eyes.webp"]{--avatar-scale:1.5127;--avatar-x:-1.660%;--avatar-y:0.586%}
+img[src$="/avatars/gold-horns.webp"]{--avatar-scale:1.1564;--avatar-x:-0.130%;--avatar-y:0.130%}
+img[src$="/avatars/halo.webp"]{--avatar-scale:1.2077;--avatar-x:0.260%;--avatar-y:0.130%}
+img[src$="/avatars/mime.webp"]{--avatar-scale:1.2126;--avatar-x:0.130%;--avatar-y:0.000%}
+img[src$="/avatars/mint-ghost.webp"]{--avatar-scale:1.1260;--avatar-x:0.000%;--avatar-y:0.000%}
+img[src$="/avatars/neon-fish.webp"]{--avatar-scale:1.5539;--avatar-x:0.098%;--avatar-y:0.684%}
+img[src$="/avatars/night-cube.webp"]{--avatar-scale:1.2275;--avatar-x:0.000%;--avatar-y:0.000%}
+img[src$="/avatars/paper-rogue.webp"]{--avatar-scale:1.2077;--avatar-x:0.000%;--avatar-y:0.000%}
+img[src$="/avatars/pink-punk.webp"]{--avatar-scale:1.2077;--avatar-x:0.260%;--avatar-y:0.000%}
+img[src$="/avatars/red-signal.webp"]{--avatar-scale:1.1746;--avatar-x:0.130%;--avatar-y:0.130%}
+img[src$="/avatars/rorschach.webp"]{--avatar-scale:1.1476;--avatar-x:0.000%;--avatar-y:0.130%}
+img[src$="/avatars/shadow-cube.webp"]{--avatar-scale:1.6039;--avatar-x:-0.488%;--avatar-y:-0.488%}
+img[src$="/avatars/stone-bot.webp"]{--avatar-scale:1.0931;--avatar-x:0.130%;--avatar-y:0.000%}
+img[src$="/avatars/teal-blade.webp"]{--avatar-scale:1.2275;--avatar-x:0.000%;--avatar-y:0.000%}
+img[src$="/avatars/wrestler.webp"]{--avatar-scale:1.2225;--avatar-x:-0.130%;--avatar-y:0.130%}
+img[src$="/avatars/zombie.webp"]{--avatar-scale:1.1981;--avatar-x:0.000%;--avatar-y:0.130%}
+.avatar-sheet .profile-edit-card>.profile-identity{display:none!important}
+.avatar-sheet .profile-avatar-picker{margin-top:4px}
+.avatar-sheet .profile-avatar-option img{transform:translate(var(--avatar-x,0%),var(--avatar-y,0%)) scale(var(--avatar-scale,1.2))!important}
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v65')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v65','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
