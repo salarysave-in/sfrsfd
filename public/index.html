@@ -1125,6 +1125,7 @@ function navigate(page){
  document.querySelectorAll('.nav-item').forEach(b=>{const active=b.dataset.page===(page==='edit-profile'?'settings':page);b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  $('homeHero').hidden=page!=='home';$('monthbar').hidden=['settings','spends','edit-profile','plan'].includes(page);$('addEntry').hidden=false;
  if(page==='spends')renderPeriods();render();window.scrollTo({top:0,behavior:'instant'});
+ syncBrowserChrome();requestAnimationFrame(syncBrowserChrome);
  $('page-'+previous).classList.remove('is-entering');
  $('page-'+page).classList.add('is-entering');
  if(page==='edit-profile')requestAnimationFrame(()=>$('editProfileTitle').focus({preventScroll:true}));
@@ -1556,7 +1557,7 @@ function syncBrowserChrome(){
   }
   // Translucent iOS status bars show the document itself. Keep header
   // artwork visible until the scrolling sheet reaches the safe-area edge.
-  const modal=document.querySelector('dialog[open],.modal-backdrop:not([hidden])');
+  const modal=[...document.querySelectorAll('dialog[open],.modal-backdrop:not([hidden])')].some(el=>el.getClientRects().length>0);
   const locked=root.classList.contains('account-locked');
   let artwork='';
   if(!locked && !modal){
@@ -1570,7 +1571,7 @@ function syncBrowserChrome(){
       }
     }else if(root.dataset.page==='settings'){
       const header=document.querySelector('#page-settings .account-profile-card');
-      if(header && header.getBoundingClientRect().bottom>y){
+      if(header && (window.scrollY<=0 || header.getBoundingClientRect().bottom>y)){
         artwork='profile';
         color=getComputedStyle(header).getPropertyValue('--status-surface').trim();
       }else{
@@ -2126,8 +2127,15 @@ html[data-page=home] .app-top {--status-surface:#26ab5e}
 html[data-page=home][data-theme=dark] .app-top {--status-surface:#000000}
 #page-settings .account-profile-card {--status-surface:#124832}
 /* Preserve the continuous texture behind a translucent standalone status bar. */
-html[data-status-artwork=home] #statusInset,
-html[data-status-artwork=profile] #statusInset {background:transparent}
+html[data-status-artwork=home] #statusInset {background:transparent}
+/* Paint the Profile safe area itself; its body and app shell are cream. */
+html[data-page=settings][data-status-artwork=profile] #statusInset {
+  background:var(--status-surface-active,#124832);
+}
+html[data-page=settings][data-status-artwork=profile] body,
+html[data-page=settings][data-status-artwork=profile] .app {
+  background:linear-gradient(var(--status-surface-active,#124832),var(--status-surface-active,#124832)) top / 100% env(safe-area-inset-top,0px) no-repeat var(--canvas)!important;
+}
 html[data-page=home][data-status-artwork=home]:not([data-theme=dark]) {
   background: #26ab5e var(--home-texture) center top / cover no-repeat fixed!important;
 }
