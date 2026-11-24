@@ -2130,6 +2130,17 @@ html[data-page=home][data-theme=dark] .app-top {--status-surface:#000000}
 #page-settings .account-profile-card {--status-surface:#124832}
 /* Preserve the continuous texture behind a translucent standalone status bar. */
 html[data-status-artwork=home] #statusInset {background:transparent}
+/* Continue the same artwork behind a translucent system status area. */
+html[data-page=settings][data-status-artwork=profile][data-light-status-icons] {
+  background-color:#124832!important;
+  background-image:linear-gradient(#08745a45,#08745a45),url('/assets/profile-header-v5.webp')!important;
+  background-position:center top;background-size:auto,100% auto;background-repeat:no-repeat;
+}
+/* Extend the navigation surface into the bottom safe area. */
+html[data-page=settings] .bottom-nav::after {
+  content:'';position:absolute;left:0;right:0;top:100%;height:160px;
+  background:var(--surface);pointer-events:none;z-index:-1;
+}
 /* Let Profile scroll its artwork directly beneath the system icons. */
 html[data-page=settings][data-status-artwork=profile] #statusInset {background:transparent}
 @media (max-width:700px) {
