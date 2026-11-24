@@ -1571,7 +1571,7 @@ function syncBrowserChrome(){
       }
     }else if(root.dataset.page==='settings'){
       const header=document.querySelector('#page-settings .account-profile-card');
-      if(header && (window.scrollY<=0 || header.getBoundingClientRect().bottom>y)){
+      if(header && header.getBoundingClientRect().bottom>y){
         artwork='profile';
         color=getComputedStyle(header).getPropertyValue('--status-surface').trim();
       }else{
@@ -2114,7 +2114,7 @@ html[data-theme=dark] :is(#chooseManual,#manualVoice) {background:#91d8ac;color:
 #voiceWave {width:min(100%,420px,53dvh);aspect-ratio:4/3;flex:none;margin:0 auto 18px}
 #voiceWave svg {display:block;width:100%;height:100%}
 html[data-page=settings] body {background:var(--canvas)!important}
-#page-settings .account-profile-card:before {background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.26) 58%,transparent)!important;backdrop-filter:none}
+#page-settings .account-profile-card:before {background:linear-gradient(180deg,rgba(4,48,30,.42),transparent)!important;backdrop-filter:none}
 html[data-page=home] .app-top {z-index:0;isolation:isolate}
 html[data-page=home] .home-content {z-index:2;background-color:var(--canvas);backdrop-filter:none;-webkit-backdrop-filter:none}
 /* Page surfaces own the system-bar colour in browser and standalone layouts. */
@@ -2128,13 +2128,14 @@ html[data-page=home][data-theme=dark] .app-top {--status-surface:#000000}
 #page-settings .account-profile-card {--status-surface:#124832}
 /* Preserve the continuous texture behind a translucent standalone status bar. */
 html[data-status-artwork=home] #statusInset {background:transparent}
-/* Paint the Profile safe area itself; its body and app shell are cream. */
-html[data-page=settings][data-status-artwork=profile] #statusInset {
-  background:var(--status-surface-active,#124832);
-}
-html[data-page=settings][data-status-artwork=profile] body,
-html[data-page=settings][data-status-artwork=profile] .app {
-  background:linear-gradient(var(--status-surface-active,#124832),var(--status-surface-active,#124832)) top / 100% env(safe-area-inset-top,0px) no-repeat var(--canvas)!important;
+/* Let Profile scroll its artwork directly beneath the system icons. */
+html[data-page=settings][data-status-artwork=profile] #statusInset {background:transparent}
+@media (max-width:700px) {
+  html[data-page=settings] body {background:var(--status-surface-active,var(--canvas))!important}
+  html[data-page=settings] .app {
+    position:fixed;inset:0;overflow:auto;overscroll-behavior-y:contain;
+  }
+  html[data-page=settings] body:has(.modal-backdrop:not([hidden]),dialog[open]) .app {overflow:hidden}
 }
 html[data-page=home][data-status-artwork=home]:not([data-theme=dark]) {
   background: #26ab5e var(--home-texture) center top / cover no-repeat fixed!important;
