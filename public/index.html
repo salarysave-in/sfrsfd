@@ -1554,12 +1554,32 @@ function syncBrowserChrome(){
     }
     if(section.classList.contains('page'))break;
   }
-  // Include the space above the first illustrated section on a fresh page.
-  const leading=document.querySelector('.page:not([hidden]) [data-status-leading]');
-  if(leading && window.scrollY<=0 && !document.querySelector('dialog[open],.modal-backdrop:not([hidden])') && !root.classList.contains('account-locked')){
-    color=getComputedStyle(leading).getPropertyValue('--status-surface').trim() || color;
+  // Translucent iOS status bars show the document itself. Keep header
+  // artwork visible until the scrolling sheet reaches the safe-area edge.
+  const modal=document.querySelector('dialog[open],.modal-backdrop:not([hidden])');
+  const locked=root.classList.contains('account-locked');
+  let artwork='';
+  if(!locked && !modal){
+    if(root.dataset.page==='home'){
+      const sheet=document.querySelector('.home-content');
+      if(sheet && sheet.getBoundingClientRect().top>y){
+        artwork='home';
+        color=getComputedStyle(document.getElementById('appTop')).getPropertyValue('--status-surface').trim();
+      }else if(sheet){
+        color=getComputedStyle(sheet).backgroundColor;
+      }
+    }else if(root.dataset.page==='settings'){
+      const header=document.querySelector('#page-settings .account-profile-card');
+      if(header && header.getBoundingClientRect().bottom>y){
+        artwork='profile';
+        color=getComputedStyle(header).getPropertyValue('--status-surface').trim();
+      }else{
+        color=canvas;
+      }
+    }
   }
-  if(root.classList.contains('account-locked'))color='#e8eee9';
+  if(locked)color='#e8eee9';
+  if(root.dataset.statusArtwork!==artwork)root.dataset.statusArtwork=artwork;
   if(root.style.getPropertyValue('--status-surface-active')!==color)root.style.setProperty('--status-surface-active',color);
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta && meta.content!==color)meta.content=color;
@@ -2102,7 +2122,13 @@ html[data-page] #statusInset {
   background:var(--status-surface-active,transparent);pointer-events:none;
 }
 html[data-page][data-light-status-icons] {background-color:var(--status-surface-active)!important;background-image:none!important}
-html[data-page=home] .app-top {--status-surface:#286e57}
+html[data-page=home] .app-top {--status-surface:#26ab5e}
 html[data-page=home][data-theme=dark] .app-top {--status-surface:#000000}
 #page-settings .account-profile-card {--status-surface:#124832}
+/* Preserve the continuous texture behind a translucent standalone status bar. */
+html[data-status-artwork=home] #statusInset,
+html[data-status-artwork=profile] #statusInset {background:transparent}
+html[data-page=home][data-status-artwork=home]:not([data-theme=dark]) {
+  background: #26ab5e var(--home-texture) center top / cover no-repeat fixed!important;
+}
 </style><script src="/motion/voice-wave.js" defer></script><script src="/motion/loading.js" defer></script></body></html>
