@@ -1963,6 +1963,8 @@ requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(spla
 #page-plan :is(.ribbon-legend,.step-number,.editor-label,.editor-head label,.percent-box,.percent-box input,.split-caption,.rest-pill,.plan-amount,.income-card label){font-size:max(12px,1em)}
 .allocation-card .percent-chip,.ribbon-legend,.step-number,#page-plan :is(.editor-label,.editor-head label,.rest-pill,.split-caption){font-size:12px!important}
 #page-plan .plan-edit-toggle{display:block;width:calc(100% - 40px);margin:20px;min-height:48px}
+#page-plan #planEditToggle{background:#165b44;color:#fff;border-color:transparent}
+html[data-theme=dark] #page-plan #planEditToggle{background:#91d8ac;color:#10251a}
 #page-plan.plan-locked input[type=range]::-webkit-slider-thumb{visibility:hidden}
 #page-plan.plan-locked input[type=range]::-moz-range-thumb{visibility:hidden}
 #page-plan.plan-locked input[type=range]{opacity:1;cursor:default}
@@ -2131,7 +2133,7 @@ html[data-status-artwork=home] #statusInset {background:transparent}
 /* Let Profile scroll its artwork directly beneath the system icons. */
 html[data-page=settings][data-status-artwork=profile] #statusInset {background:transparent}
 @media (max-width:700px) {
-  html[data-page=settings] body {background:var(--status-surface-active,var(--canvas))!important}
+  html[data-page=settings] body {background:var(--canvas)!important}
   html[data-page=settings] .app {
     position:fixed;inset:0;overflow:auto;overscroll-behavior-y:contain;
   }
