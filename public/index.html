@@ -989,6 +989,7 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
 </div></section></main></div>
 <nav class="bottom-nav" aria-label="Main navigation"><button class="nav-item active" data-page="home" aria-current="page"><span data-icon="home"></span><span data-i18n="home">Home</span></button><button class="nav-item" data-page="plan"><span data-icon="slidersHorizontal"></span><span data-i18n="plan">Plan</span></button><button class="fab nav-add" id="addEntry" aria-label="Add expense" title="Add expense" data-icon="plus"></button><button class="nav-item" data-page="spends"><span data-icon="chartPie"></span><span data-i18n="spends">Spends</span></button><button class="nav-item" data-page="settings"><span data-icon="userProfile"></span><span>Profile</span></button></nav>
 <div class="modal-backdrop" id="customizeModal" hidden role="dialog" aria-modal="true" aria-labelledby="customizeTitle"><section class="modal customize-modal"><div class="modal-top"><h2 id="customizeTitle">Customize</h2><button class="close-button" type="button" data-close aria-label="Close customization" data-icon="x"></button></div><p class="customize-subtitle">Make your app feel like you.</p><div class="ui-theme-options" role="group" aria-label="App theme"><button type="button" class="ui-theme-option" id="chooseOriginalTheme" aria-pressed="true"><span class="theme-preview theme-preview-original" aria-hidden="true"><i></i><b></b><em></em></span><span class="theme-option-title">OG<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Calm & considered</small></button><button type="button" class="ui-theme-option" id="chooseNoirTheme" aria-pressed="false"><span class="theme-preview theme-preview-noir" aria-hidden="true"><i></i><b></b><em></em><strong>SS</strong></span><span class="theme-option-title">Noir<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Charcoal. Chrome. Clarity.</small></button><button type="button" class="ui-theme-option" id="chooseExpressiveTheme" aria-pressed="false" hidden><span class="theme-preview theme-preview-expressive" aria-hidden="true"><i></i><b></b><em></em></span><span class="theme-option-title">Expressive<span class="theme-selected-mark" aria-hidden="true">✓</span></span><small>Playful. Bold. Yours.</small></button></div><p class="theme-help" id="noirThemeHelp" hidden>Miniature 3D icons. Sculpted surfaces. A darker perspective.</p><h3 class="customize-section-heading">Balance display</h3><div class="balance-design-options"><button type="button" class="balance-design-option" id="chooseGlass" aria-pressed="true"><span class="mini-glass" aria-hidden="true">8 7 , 5 0 0</span><span>Glass capsule</span></button><button type="button" class="balance-design-option" id="chooseFlip" aria-pressed="false"><span class="mini-flip" aria-hidden="true"><b>87</b><b>500</b></span><span>Flip clock</span></button></div><h3 class="icon-pack-heading" id="iconStyleHeading">Icon style</h3><div id="iconStyleOptions" class="icon-pack-options" role="group" aria-label="Icon style"><button type="button" id="chooseSilverIcons" class="icon-pack-option" aria-pressed="true"><span class="pack-preview" id="previewSilverIcons" aria-hidden="true"></span><span>Silver</span><small>Metal & a single accent</small></button><button type="button" id="chooseStickerIcons" class="icon-pack-option" aria-pressed="false"><span class="pack-preview" id="previewStickerIcons" aria-hidden="true"></span><span>Sticker</span><small>Bold objects & graphic details</small></button></div><div class="settings-row"><span id="balanceSoundLabel">Mechanical sounds</span><button type="button" class="setting-switch" id="balanceSound" role="switch" aria-checked="true" aria-labelledby="balanceSoundLabel"><span></span></button></div><button class="primary full" id="customizeDone" type="button">Save</button></section></div>
+<span aria-hidden="true" id="statusInset" style="position:fixed;height:env(safe-area-inset-top,0px);width:0;pointer-events:none"></span>
 <dialog id="entryChoice" class="voice-dialog" aria-labelledby="choiceTitle">
   <header><h2 id="choiceTitle">Add expense</h2><button type="button" class="voice-close" aria-label="Close">×</button></header>
   <button type="button" id="chooseVoice"><span class="voice-orb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Voice entry</button>
@@ -996,7 +997,7 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
 </dialog>
 <dialog id="voicePage" class="voice-dialog" aria-labelledby="voiceTitle">
   <header><h2 id="voiceTitle">Voice entry</h2><button type="button" class="voice-close" aria-label="Close voice entry">×</button></header>
-  <div class="voice-stage"><div class="voice-sphere" aria-hidden="true"><span class="rim"></span><span class="core"></span></div>
+  <div class="voice-stage"><div id="voiceWave" aria-hidden="true"></div>
   <h3 id="voiceStatus" role="status">Starting microphone…</h3><p id="voiceText" dir="auto"></p></div>
   <footer><button type="button" class="primary" id="reviewVoice">Review entry</button><button type="button" id="manualVoice" class="voice-link">Enter manually</button></footer>
 </dialog>
@@ -1531,7 +1532,27 @@ window.addEventListener('resize',()=>requestAnimationFrame(measureHomeStage));
 document.fonts?.ready.then(()=>requestAnimationFrame(()=>{measureHomeStage();fitBudgetValues()}));
 
 // Installed iOS apps draw the Home artwork beneath the transparent status bar.
-function syncBrowserChrome(){const onboarding=document.documentElement.classList.contains?.('account-locked');const dark=document.documentElement.dataset.theme==='dark',home=document.documentElement.dataset.page==='home',profile=document.documentElement.dataset.page==='settings';const meta=document.querySelector('meta[name="theme-color"]');const noir=uiTheme()==='noir';if(meta)meta.content=onboarding?'#ffffff':profile?'#063a24':noir?'#121315':home?(dark?'#154d3b':'#286e57'):(dark?'#141b18':'#F6F7F2');try{window.webkit?.messageHandlers?.salaryChrome?.postMessage({lightStatusBar:profile||noir||home||dark})}catch{}}
+function syncBrowserChrome(){
+  const root=document.documentElement, dark=root.dataset.theme==='dark';
+  const page=root.dataset.page, style=getComputedStyle(root);
+  const canvas=style.getPropertyValue('--canvas').trim() || (dark?'#121315':'#f6f7f2');
+  const rawSurface=style.getPropertyValue('--surface').trim() || canvas;
+  const voice=document.querySelector('#entryChoice[open],#voicePage[open],#entryModal:not([hidden])');
+  const profile=document.querySelector('#page-settings .account-profile-card');
+  const content=document.querySelector('.home-content');
+  const safe=document.getElementById('statusInset')?.offsetHeight || 1;
+  const homeArt=page==='home' && content && content.getBoundingClientRect().top>safe;
+  const profileArt=page==='settings' && profile && profile.getBoundingClientRect().bottom>safe;
+  const locked=root.classList.contains('account-locked');
+  const color=locked?'#ffffff':voice?rawSurface:homeArt?(dark?'#000000':'#286e57'):profileArt?'#082619':canvas;
+  const lightIcons=!locked && (dark || (!voice && (homeArt || profileArt)));
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta && meta.content!==color)meta.content=color;
+  if(root.dataset.lightStatusIcons!==String(lightIcons)){
+    root.dataset.lightStatusIcons=String(lightIcons);
+    try{window.webkit?.messageHandlers?.salaryChrome?.postMessage({lightStatusBar:lightIcons})}catch{}
+  }
+}
 
 // Quartic superellipse corners have zero curvature where they join a straight edge.
 // This is an Apple-inspired continuous profile, not a claim of Apple's private geometry.
@@ -1721,7 +1742,12 @@ voicePage.addEventListener('close', () => { if (!voicePage.open) stopCapture() }
 function leaveVoice() { if (voicePage.open) { stopCapture(); voicePage.close() } }
 window.addEventListener('pagehide', leaveVoice);
 document.addEventListener('visibilitychange', () => { if (document.hidden) leaveVoice() });
-let homeChromeMode='';window.addEventListener('scroll',()=>{if(currentPage!=='home')return;const content=document.querySelector('.home-content'),covered=content&&content.getBoundingClientRect().top<=Math.max(30,parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-top'))||30);const mode=covered?'content':'art';if(mode===homeChromeMode)return;homeChromeMode=mode;const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=covered?(document.documentElement.dataset.theme==='dark'?'#121315':'#f6f7f2'):(document.documentElement.dataset.theme==='dark'?'#000000':'#286e57');try{window.webkit?.messageHandlers?.salaryChrome?.postMessage({lightStatusBar:!covered||document.documentElement.dataset.theme==='dark'})}catch{}},{passive:true});
+let chromeFrame=0;
+function queueChrome(){if(!chromeFrame)chromeFrame=requestAnimationFrame(()=>{chromeFrame=0;syncBrowserChrome()})}
+window.addEventListener('scroll',queueChrome,{passive:true});
+window.addEventListener('resize',queueChrome);
+const chromeObserver=new MutationObserver(queueChrome);
+for(const id of ['entryChoice','voicePage','entryModal'])chromeObserver.observe($(id),{attributes:true,attributeFilter:['open','hidden']});
 initSettings();renderPeriods();render();
 
 requestAnimationFrame(()=>setTimeout(()=>{const splash=$('launchSplash');if(splash){splash.classList.add('is-finished');setTimeout(()=>splash.remove(),300)}},window.matchMedia('(prefers-reduced-motion: reduce)').matches?0:480));
@@ -2036,4 +2062,15 @@ img[src$="/avatars/zombie.webp"]{--avatar-scale:1.1981;--avatar-x:0.000%;--avata
 .avatar-sheet .profile-edit-card{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 20px 12px!important}
 .avatar-sheet .profile-save-actions{position:relative;flex:none;bottom:auto;z-index:2;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px))!important;margin:0!important;background:var(--surface)!important;border-top:1px solid var(--line)}
 .avatar-sheet #profileSave{display:block;margin:0;width:100%}
-</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v74')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v74','1')}}catch{}</script><script src="/motion/loading.js" defer></script></body></html>
+</style><script>try{if('serviceWorker'in navigator&&!localStorage.getItem('salary-save-cache-reset-v74')){navigator.serviceWorker.getRegistrations().then(r=>Promise.all(r.map(x=>x.unregister())));if('caches'in window)caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x))));localStorage.setItem('salary-save-cache-reset-v74','1')}}catch{}</script><style>
+#chooseManual,#manualVoice {background:#165b44;color:#fff;border:1px solid transparent}
+#voicePage #reviewVoice {background:var(--surface);color:var(--text);border:1px solid var(--line)}
+html[data-theme=dark] :is(#chooseManual,#manualVoice) {background:#91d8ac;color:#10251a}
+#voicePage,#entryChoice {background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+#voiceWave {width:min(100%,420px,53dvh);aspect-ratio:4/3;flex:none;margin:0 auto 18px}
+#voiceWave svg {display:block;width:100%;height:100%}
+html[data-page=settings] body {background:var(--canvas)!important}
+#page-settings .account-profile-card:before {background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.26) 58%,transparent)!important;backdrop-filter:none}
+html[data-page=home] .app-top {z-index:0;isolation:isolate}
+html[data-page=home] .home-content {z-index:2;background-color:var(--canvas);backdrop-filter:none;-webkit-backdrop-filter:none}
+</style><script src="/motion/voice-wave.js" defer></script><script src="/motion/loading.js" defer></script></body></html>
