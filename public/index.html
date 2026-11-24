@@ -1541,10 +1541,16 @@ function syncBrowserChrome(){
   const profile=document.querySelector('#page-settings .account-profile-card');
   const content=document.querySelector('.home-content');
   const safe=document.getElementById('statusInset')?.offsetHeight || 1;
-  const homeArt=page==='home' && content && content.getBoundingClientRect().top>safe;
+  const viewportTop=window.visualViewport?.offsetTop || 0;
+  const homeArt=page==='home' && content && content.getBoundingClientRect().top>viewportTop+safe;
   const profileArt=page==='settings' && profile && profile.getBoundingClientRect().bottom>safe;
   const locked=root.classList.contains('account-locked');
-  const color=locked?'#ffffff':voice?rawSurface:homeArt?(dark?'#000000':'#286e57'):profileArt?'#082619':canvas;
+  const sheetColor=page==='home' && content ? getComputedStyle(content).backgroundColor : '';
+  const visibleCanvas=sheetColor && sheetColor!=='transparent' && sheetColor!=='rgba(0, 0, 0, 0)' ? sheetColor : canvas;
+  const color=locked?'#ffffff':voice?rawSurface:homeArt?(dark?'#000000':'#286e57'):profileArt?'#082619':visibleCanvas;
+  const mode=page==='home' && !locked && (voice || !homeArt) ? 'surface' : 'hero';
+  if(root.dataset.homeChrome!==mode)root.dataset.homeChrome=mode;
+  if(mode==='surface' && root.style.getPropertyValue('--home-chrome-color')!==color)root.style.setProperty('--home-chrome-color',color);
   const lightIcons=!locked && (dark || (!voice && (homeArt || profileArt)));
   const meta=document.querySelector('meta[name="theme-color"]');
   if(meta && meta.content!==color)meta.content=color;
@@ -1745,6 +1751,10 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) leave
 let chromeFrame=0;
 function queueChrome(){if(!chromeFrame)chromeFrame=requestAnimationFrame(()=>{chromeFrame=0;syncBrowserChrome()})}
 window.addEventListener('scroll',queueChrome,{passive:true});
+document.addEventListener('scroll',queueChrome,{capture:true,passive:true});
+window.visualViewport?.addEventListener('scroll',queueChrome,{passive:true});
+window.visualViewport?.addEventListener('resize',queueChrome);
+window.addEventListener('pageshow',queueChrome);
 window.addEventListener('resize',queueChrome);
 const chromeObserver=new MutationObserver(queueChrome);
 for(const id of ['entryChoice','voicePage','entryModal'])chromeObserver.observe($(id),{attributes:true,attributeFilter:['open','hidden']});
@@ -2073,4 +2083,14 @@ html[data-page=settings] body {background:var(--canvas)!important}
 #page-settings .account-profile-card:before {background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.26) 58%,transparent)!important;backdrop-filter:none}
 html[data-page=home] .app-top {z-index:0;isolation:isolate}
 html[data-page=home] .home-content {z-index:2;background-color:var(--canvas);backdrop-filter:none;-webkit-backdrop-filter:none}
+/* The installed app paints behind the translucent system status bar. */
+html[data-page=home][data-home-chrome=surface],
+html[data-page=home][data-home-chrome=surface] body {
+  background-image:none!important;
+  background-color:var(--home-chrome-color)!important;
+}
+html[data-page=home][data-home-chrome=surface] #statusInset {
+  inset:0 0 auto; width:100%!important; z-index:5;
+  background:var(--home-chrome-color); pointer-events:none;
+}
 </style><script src="/motion/voice-wave.js" defer></script><script src="/motion/loading.js" defer></script></body></html>
