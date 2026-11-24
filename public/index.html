@@ -947,6 +947,55 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
 #voicePage[data-speaking=true] i {animation-name:voice-wave;animation-duration:.58s;animation-direction:alternate;animation-iteration-count:infinite;animation-timing-function:ease-in-out}
 @keyframes voice-wave {from{transform:scaleY(.6)}to{transform:scaleY(1.45)}}
 @media(prefers-reduced-motion:reduce){#voicePage[data-speaking=true] i{animation:none}}
+/* The voice canvas has its own palette so the illuminated rim reads in both themes. */
+#voicePage {
+  color-scheme: dark;
+  background: #060708;
+  color: #f5f6f0;
+}
+#voicePage header h2 { font-size: 16px; font-weight: 600; }
+#voicePage .voice-close { color: #e6e9df; background: #191b1b; }
+#voicePage .voice-stage { position: relative; }
+#voicePage .voice-stage h3 { font-size: 17px; font-weight: 550; }
+#voiceText { color: #c5c9c7; max-width: 34ch; }
+#voicePage footer { width: min(100%, 360px); margin-inline: auto; }
+#voicePage #reviewVoice { background: #d5f451; color: #172004; border-radius: 999px; }
+#voicePage .voice-link { color: #c6c9c6; }
+.voice-sphere {
+  --rim: conic-gradient(from 34deg, #818a9f, #7364fe 12%, #4ddaff 24%, #dadbff 33%, #9663fb 49%, #fab1be 57%, #c1f4ff 64%, #428bff 74%, #191a4b 87%, #818a9f);
+  position: relative;
+  isolation: isolate;
+  width: min(57vw, 234px, 32dvh);
+  aspect-ratio: 1;
+  flex: none;
+  margin: 0 auto clamp(24px, 5vh, 54px);
+  border-radius: 50%;
+}
+.voice-sphere::before {
+  content: ''; position: absolute; inset: 5%; z-index: -1;
+  background: var(--rim); border-radius: 50%;
+  filter: blur(18px); opacity: .24; transition: opacity .35s ease;
+}
+.voice-sphere .rim, .voice-sphere .core {
+  position: absolute; inset: 3%; border-radius: 46% 54% 51% 49% / 53% 45% 55% 47%;
+  background: var(--rim); box-shadow: inset 0 1px 4px #ffffffa6;
+  animation: voice-orbit 12s linear infinite paused;
+}
+.voice-sphere .core {
+  inset: 7%; opacity: .95; animation-direction: reverse; animation-duration: 9s;
+  background: radial-gradient(ellipse at 55% 53%, #040508 26%, #090a16 48%, transparent 71%),
+    radial-gradient(ellipse at 22% 34%, #8fe9ff, transparent 32%),
+    radial-gradient(ellipse at 75% 76%, #9066ff, transparent 36%), var(--rim);
+  box-shadow: inset 1px -2px 9px #eef4ff94;
+}
+#voicePage[data-listening=true] .voice-sphere > span { animation-play-state: running; }
+#voicePage[data-speaking=true] .voice-sphere::before { opacity: .65; }
+#voicePage[data-speaking=true] .voice-sphere { animation: voice-breathe .85s ease-in-out infinite alternate; }
+@keyframes voice-orbit { to { transform: rotate(360deg); } }
+@keyframes voice-breathe { to { transform: scale(1.045); } }
+@media (prefers-reduced-motion: reduce) {
+  #voicePage .voice-sphere, #voicePage .voice-sphere > span { animation: none; }
+}
 </style></head><body><div id="budget-loader" role="status" aria-label="Loading Salary Save" hidden><div class="motion" aria-hidden="true"></div></div><div id="accountGate" class="account-gate" role="dialog" aria-modal="true" aria-label="Salary Save account setup">
  <iframe id="onboardingFrame" title="Salary Save account setup" src="/onboarding/?release=70" allow=""></iframe><div class="account-card" hidden><span class="account-brand">SALARY SAVE</span>
   <div id="accountLoading" aria-busy="true"><i class="ui-spinner" aria-hidden="true"></i><h1 id="accountTitle">Your money, with a plan.</h1><p>Preparing your account…</p></div>
@@ -985,7 +1034,7 @@ html #balanceDisplay[data-over-budget=true]:before{background-color:#d7323e30;bo
 </dialog>
 <dialog id="voicePage" class="voice-dialog" aria-labelledby="voiceTitle">
   <header><h2 id="voiceTitle">Voice entry</h2><button type="button" class="voice-close" aria-label="Close voice entry">×</button></header>
-  <div class="voice-stage"><div class="voice-orb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="voice-stage"><div class="voice-sphere" aria-hidden="true"><span class="rim"></span><span class="core"></span></div>
   <h3 id="voiceStatus" role="status">Starting microphone…</h3><p id="voiceText" dir="auto"></p></div>
   <footer><button type="button" class="primary" id="reviewVoice">Review entry</button><button type="button" id="retryVoice" class="voice-link" hidden>Try again</button><button type="button" id="manualVoice" class="voice-link">Enter manually</button></footer>
 </dialog>
@@ -1636,6 +1685,7 @@ function openEntryChoice() {
   if (!choice.open) choice.showModal();
 }
 function stopCapture() {
+  voicePage.dataset.listening = 'false';
   clearTimeout(finishTimer);
   const previous = capture;
   capture = null;
@@ -1661,7 +1711,7 @@ function startVoice() {
   session.lang = locale();
   session.interimResults = true;
   session.continuous = false;
-  session.onstart = () => { if (capture === session) $('voiceStatus').textContent = 'Listening…' };
+  session.onstart = () => { if (capture === session) { voicePage.dataset.listening = 'true'; $('voiceStatus').textContent = 'Listening…' } };
   session.onspeechstart = () => { if (capture === session) voicePage.dataset.speaking = 'true' };
   session.onspeechend = session.onsoundend = () => { if (capture === session) voicePage.dataset.speaking = 'false' };
   session.onresult = event => {
@@ -1674,6 +1724,7 @@ function startVoice() {
   };
   function end(message) {
     if (capture !== session) return;
+    voicePage.dataset.listening = 'false';
     capture = null;
     clearTimeout(finishTimer);
     voicePage.dataset.speaking = 'false';
